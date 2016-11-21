@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Opera;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,8 @@ namespace NUnit_3.x
     {
         Chrome,
         Firefox,
-        IE
+        IE,
+        Opera
     }
 
 
@@ -46,6 +49,10 @@ namespace NUnit_3.x
                 Driver = new ChromeDriver();
             else if (browserType == BrowserType.Firefox)
                 Driver = new FirefoxDriver();
+            else if (browserType == BrowserType.IE)
+                Driver = new InternetExplorerDriver();
+            else if (browserType == BrowserType.Opera)
+                Driver = new OperaDriver();
         }
 
 
