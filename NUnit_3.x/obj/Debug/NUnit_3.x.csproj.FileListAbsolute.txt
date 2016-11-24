@@ -14,6 +14,6 @@ C:\C#\Automatyzacja\NUnit_3.x\NUnit_3.x\bin\Debug\WebDriver.Support.dll
 C:\C#\Automatyzacja\NUnit_3.x\NUnit_3.x\bin\Debug\nunit.framework.xml
 C:\C#\Automatyzacja\NUnit_3.x\NUnit_3.x\bin\Debug\WebDriver.xml
 C:\C#\Automatyzacja\NUnit_3.x\NUnit_3.x\bin\Debug\WebDriver.Support.xml
-C:\C#\Automatyzacja\NUnit_3.x\NUnit_3.x\obj\Debug\NUnit_3.x.csprojResolveAssemblyReference.cache
 C:\C#\Automatyzacja\NUnit_3.x\NUnit_3.x\obj\Debug\NUnit_3.x.dll
 C:\C#\Automatyzacja\NUnit_3.x\NUnit_3.x\obj\Debug\NUnit_3.x.pdb
+C:\C#\Automatyzacja\NUnit_3.x\NUnit_3.x\obj\Debug\NUnit_3.x.csprojResolveAssemblyReference.cache
