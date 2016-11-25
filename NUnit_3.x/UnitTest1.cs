@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Internal;
+using OpenQA.Selenium.Support;
 
 
 namespace NUnit_3.x
@@ -79,6 +80,67 @@ namespace NUnit_3.x
            
         }
 
+
+        [Test]
+        public void GoogleChromeResizableElement()
+        {
+            Driver.Navigate().GoToUrl("http://demoqa.com/resizable/");
+            System.Threading.Thread.Sleep(2000);
+            string table = ".//*[@id='resizable']/div[3]";
+            IWebElement tableResize = Driver.FindElement(By.XPath(table));
+
+            Actions resize = new Actions(Driver);
+
+            //resize.ClickAndHold(tableResize).MoveByOffset(400, 200).Perform();                // tak też będzie dobrze
+            //tableResize.Click();
+                                                                                  
+            IAction dragToResize = resize.ClickAndHold(tableResize)
+                .MoveToElement(tableResize,300,200)
+                .Release()
+                .Build();
+            dragToResize.Perform();
+            
+                
+        }
+
+
+        [Test]
+        public void DragElementAround()
+        {
+            Driver.Navigate().GoToUrl("http://demoqa.com/draggable/");
+            System.Threading.Thread.Sleep(2000);
+
+            IWebElement button = Driver.FindElement(By.Id("draggable"));
+
+            Actions dragAround = new Actions(Driver);
+
+            IAction dragbutton = dragAround.ClickAndHold(button)
+                .MoveToElement(button, 300, 500)
+                .Release()
+                .Build();
+            dragbutton.Perform();
+        }
+
+
+        [Test]
+        public void GoogleChromeDragItemTestSolution2()
+        {
+            Driver.Navigate().GoToUrl("http://demoqa.com/droppable/");
+
+            var target = Driver.FindElements(By.XPath(".//*[@id='droppableview']"));   // cel, gdzie ma zostac przeciagniety przycisk 
+            var source = Driver.FindElement(By.XPath(".//*[@id='draggableview']"));    //źródło (pryzcisk do przeciagniecia)
+
+            Actions builder = new Actions(Driver);
+
+            IAction dragAndDrop = builder.ClickAndHold(source)
+               .MoveToElement(target[0])
+               .Release(target[0])
+               .Build();
+
+            dragAndDrop.Perform();
+        }
+
+
         [Test]
         public void GoogleChromeDropToShoppingCard()
         {
@@ -98,7 +160,7 @@ namespace NUnit_3.x
             addFirstProductToShoppingCard.DragAndDrop(product1, shoppingCard).Perform();
 
             Driver.FindElement(By.Id("ui-id-8")).Click();
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(1000); 
 
             Actions addSecondProductToShoppingCard = new Actions(Driver);
             addSecondProductToShoppingCard.DragAndDrop(product2, shoppingCard).Perform();
@@ -111,6 +173,7 @@ namespace NUnit_3.x
              
 
         }
+
 
     }
 
