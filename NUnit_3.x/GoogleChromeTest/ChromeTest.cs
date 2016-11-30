@@ -1,44 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Internal;
-using OpenQA.Selenium.Support;
 
-
-namespace NUnit_3.x
+namespace NUnit_3.x.GoogleChromeTest
 {
-    [TestFixture]
-    [Parallelizable]                            // atrybut który umozliwia prowadzenie etstu rownolegle z innymi. Sprawdza czy jest taka mozliwosc.
-
-    public class FirefoxTesting : Hooks
-    {
-
-
-        public FirefoxTesting() : base (BrowserType.Firefox)
-        {
-
-        }
-
-
-
-
-        [Test]
-        public void FiredoxGoogleTest()
-        {
-
-            Driver.Navigate().GoToUrl("http://google.pl");
-            Driver.FindElement(By.Name("q")).SendKeys("Selenium");
-            System.Threading.Thread.Sleep(1500);
-            Driver.FindElement(By.Name("btnG")).Click();
-            Assert.That(Driver.PageSource.Contains("Selenium"), Is.EqualTo(true), 
-                                                "The text selenium doest not exist");
-
-        }
-    }
-
-
-
     [TestFixture]
     [Parallelizable]
 
@@ -46,7 +16,7 @@ namespace NUnit_3.x
     {
 
 
-        public ChromeTesting() : base (BrowserType.Chrome) 
+        public ChromeTesting() : base(BrowserType.Chrome)
         {
 
         }
@@ -77,7 +47,7 @@ namespace NUnit_3.x
 
             Actions action = new Actions(Driver);
             action.DragAndDrop(source, target).Perform();
-           
+
         }
 
 
@@ -93,22 +63,23 @@ namespace NUnit_3.x
 
             //resize.ClickAndHold(tableResize).MoveByOffset(400, 200).Perform();                // tak też będzie dobrze
             //tableResize.Click();
-                                                                                  
+
             IAction dragToResize = resize.ClickAndHold(tableResize)
-                .MoveToElement(tableResize,300,200)
+                .MoveToElement(tableResize, 300, 200)
                 .Release()
                 .Build();
             dragToResize.Perform();
-            
-                
+
+
         }
 
 
         [Test]
-        public void DragElementAround()
+        public void GoogleChromeDragElementAround()
         {
             Driver.Navigate().GoToUrl("http://demoqa.com/draggable/");
             System.Threading.Thread.Sleep(2000);
+
 
             IWebElement button = Driver.FindElement(By.Id("draggable"));
 
@@ -149,18 +120,18 @@ namespace NUnit_3.x
             Driver.FindElement(By.Id("ui-id-5")).Click();
             System.Threading.Thread.Sleep(1000);
 
-            IWebElement product1 = Driver.FindElement(By.XPath(".//*[@id='ui-id-7']/ul/li[1]")); 
+            IWebElement product1 = Driver.FindElement(By.XPath(".//*[@id='ui-id-7']/ul/li[1]"));
             IWebElement product2 = Driver.FindElement(By.XPath(".//*[@id='ui-id-9']/ul/li[2]"));        //Produkty
             IWebElement product3 = Driver.FindElement(By.XPath(".//*[@id='ui-id-11']/ul/li[3]"));
 
-          
+
             IWebElement shoppingCard = Driver.FindElement(By.XPath(".//*[@id='cart']/div/ol"));        //Koszyk
-            
+
             Actions addFirstProductToShoppingCard = new Actions(Driver);
             addFirstProductToShoppingCard.DragAndDrop(product1, shoppingCard).Perform();
 
             Driver.FindElement(By.Id("ui-id-8")).Click();
-            System.Threading.Thread.Sleep(1000); 
+            System.Threading.Thread.Sleep(1000);
 
             Actions addSecondProductToShoppingCard = new Actions(Driver);
             addSecondProductToShoppingCard.DragAndDrop(product2, shoppingCard).Perform();
@@ -170,41 +141,10 @@ namespace NUnit_3.x
 
             Actions addThirdProductToShoppingCard = new Actions(Driver);
             addThirdProductToShoppingCard.DragAndDrop(product3, shoppingCard).Perform();
-             
+
 
         }
 
 
     }
-
-
-
-    [TestFixture]
-    [Parallelizable]
-
-    public class IE_Testing : Hooks
-    {
-
-
-        public IE_Testing() : base(BrowserType.IE)
-        {
-
-        }
-
-
-
-        [Test]
-        public void IEGoogleTest()
-        {
-            Driver.Navigate().GoToUrl("http://google.pl");
-            System.Threading.Thread.Sleep(1000);
-            Driver.FindElement(By.Name("q")).SendKeys("Internet Explorer");
-            Driver.FindElement(By.Name("btnG")).Click();
-            Assert.That(Driver.PageSource.Contains("Internet Explorer"), Is.EqualTo(true),
-                                                "The text Execute Automation doest not exist");
-           
-        }
-
-    }
-
 }

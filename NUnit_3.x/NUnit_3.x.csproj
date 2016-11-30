@@ -88,8 +88,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Base.cs" />
+    <Compile Include="GoogleChromeTest\ChromeTest.cs" />
     <Compile Include="Hooks.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="MozillaFirefoxTest\Firefox.cs" />
+    <Compile Include="InternetExplorerTest\Explorer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

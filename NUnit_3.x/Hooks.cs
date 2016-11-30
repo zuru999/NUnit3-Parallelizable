@@ -41,6 +41,7 @@ namespace NUnit_3.x
         public void InitializeTest()
         {
             ChooseDriverInstance(_browserType);
+            //Driver.Manage().Window.Maximize();
         }
 
         private void ChooseDriverInstance(BrowserType browserType)
